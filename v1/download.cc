@@ -30,8 +30,8 @@ static size_t download_write_cb(char *ptr,
     while (len < wlen)
     {
         len += write(job->fd, ptr + len, wlen - len);
-        fsync(job->fd);
     }
+    fsync(job->fd);
     job->offset += len;
     pthread_mutex_unlock(&job->download->m_mutex);
     return len;
